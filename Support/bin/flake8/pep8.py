@@ -105,8 +105,6 @@ from optparse import OptionParser
 from keyword import iskeyword
 from fnmatch import fnmatch
 
-from flake8.util import skip_line
-
 DEFAULT_EXCLUDE = '.svn,CVS,.bzr,.hg,.git'
 DEFAULT_IGNORE = ['E24']
 
@@ -938,8 +936,6 @@ class Checker(object):
         """
         Report an error, according to options.
         """
-        if skip_line(self.physical_line):
-            return
         if options.quiet == 1 and not self.file_errors:
             message(self.filename)
         self.file_errors += 1
