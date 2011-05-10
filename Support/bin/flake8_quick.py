@@ -41,8 +41,14 @@ def cleanup_whitespace(filename):
     f.writelines(lines)
     f.close()
 
-    subprocess.Popen('osascript -e \'tell app "SystemUIServer" to activate\' -e \'tell app "TextMate" to activate\'',
-                    shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE);
+    command = """
+        osascript -e 'tell app "SystemUIServer" to activate'
+                  -e 'tell application "TextMate" to activate'
+                  -e 'tell application "TextMate" to reopen "%s"'
+                  -e 'delay 1'
+    """.strip().replace("                  ", ' ').replace("'", "\'").replace("\n", "")
+    command = command % filename
+    subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE);
 
 def capture(warning):
     def captured(fn):
