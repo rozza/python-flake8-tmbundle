@@ -9,7 +9,7 @@ Installation
    	``git clone https://github.com/rozza/python-flake8-tmbundle.git ~/Library/Application\ Support/TextMate/Bundles/PythonFlake8.tmbundle``
 
 2. Reload TextMate or Navigate to Bundles -> Bundle Editor -> Reload Bundles.
-
+   If that fails - try restarting Textmate.
 
 
 Flake8
@@ -17,6 +17,7 @@ Flake8
 
 Wraps the following Libraries:
 
+* Removes whitespace
 * PEP 8
 * PyFlakes
 * Mccabee
