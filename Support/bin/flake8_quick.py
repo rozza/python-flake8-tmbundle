@@ -45,7 +45,6 @@ def cleanup_whitespace(filename):
         osascript -e 'tell app "SystemUIServer" to activate'
                   -e 'tell application "TextMate" to activate'
     """.strip().replace("                  ", ' ').replace("'", "\'").replace("\n", "")
-    command = command % filename
     subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE);
 
 def capture(warning):
