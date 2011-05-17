@@ -674,10 +674,14 @@ def check(codeString, filename):
     else:
         # Okay, it's syntactically valid.  Now check it.
         w = Checker(tree, filename)
-        w.messages.sort(lambda a, b: cmp(a.lineno, b.lineno))
+        data = codeString.split('\n')
+        messages = [message for message in w.messages
+                    if data[message.lineno - 1].find('pyflakes:ignore') < 0]
+
+        messages.sort(lambda a, b: cmp(a.lineno, b.lineno))
         valid_warnings = 0
 
-        for warning in w.messages:
+        for warning in messages:
             print warning
             valid_warnings += 1
 
